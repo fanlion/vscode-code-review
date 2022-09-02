@@ -8,7 +8,7 @@ import { WorkspaceContext } from './workspace';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: ExtensionContext) {
-  let workspaceRoot: string = getWorkspaceFolder(
+  const workspaceRoot: string = getWorkspaceFolder(
     workspace.workspaceFolders as WorkspaceFolder[],
     window.activeTextEditor,
   );

@@ -36,5 +36,6 @@
     "editor.defaultFormatter": null
   },
   "cSpell.words": ["gitlab", "jira", "prio", "vsce"],
-  "markdown.extension.toc.levels": "2..6"
+  "markdown.extension.toc.levels": "2..6",
+  "i18n-ally.localesPaths": []
 }
