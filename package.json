@@ -50,31 +50,31 @@
       },
       {
         "command": "codeReview.exportAsHtmlWithDefaultTemplate",
-        "title": "Code Review: Export as HTML with default template"
+        "title": "Code Review: 使用默认模板导出HTML文件"
       },
       {
         "command": "codeReview.exportAsHtmlWithHandlebarsTemplate",
-        "title": "Code Review: Export as HTML with Handlebars template"
+        "title": "Code Review: 使用Handlebars模板导出HTML文件"
       },
       {
         "command": "codeReview.exportAsMarkdownWithDefaultTemplate",
-        "title": "Code Review: Export as Markdown with default template"
+        "title": "Code Review: 使用默认模板导出Markdown文件"
       },
       {
         "command": "codeReview.exportAsMarkdownWithHandlebarsTemplate",
-        "title": "Code Review: Export as Markdown with Handlebars template"
+        "title": "Code Review: 使用Handlebars模板导出Markdown文件"
       },
       {
         "command": "codeReview.exportAsGitLabImportableCsv",
-        "title": "Code Review: Export as GitLab importable CSV file"
+        "title": "Code Review: 导出GitLab可导入的CSV文件"
       },
       {
         "command": "codeReview.exportAsGitHubImportableCsv",
-        "title": "Code Review: Export as GitHub importable CSV file (github-csv-tools)"
+        "title": "Code Review: 导出GitLab可导入的CSV文件 (github-csv-tools)"
       },
       {
         "command": "codeReview.exportAsJiraImportableCsv",
-        "title": "Code Review: Export as JIRA importable CSV file"
+        "title": "Code Review: 导出JIRA可导入的CSV文件"
       },
       {
         "command": "codeReview.exportAsJson",
@@ -82,15 +82,15 @@
       },
       {
         "command": "codeReview.importFromJson",
-        "title": "Code Review: Import from JSON file"
+        "title": "Code Review: 导入JSON文件"
       },
       {
         "command": "codeReview.deleteNote",
-        "title": "Delete"
+        "title": "deleteNote 删除"
       },
       {
         "command": "codeReview.filterByCommitEnable",
-        "title": "Code Review: View comments from the current commit",
+        "title": "Code Review: 查看当前commit种的评审意见",
         "icon": {
           "light": "images/icons/filter-off-light.svg",
           "dark": "images/icons/filter-off-dark.svg"
@@ -98,7 +98,7 @@
       },
       {
         "command": "codeReview.filterByCommitDisable",
-        "title": "Code Review: View comments from all commits",
+        "title": "Code Review: 查看所有commit中的评审意见",
         "icon": {
           "light": "images/icons/filter-on-light.svg",
           "dark": "images/icons/filter-on-dark.svg"
@@ -106,7 +106,7 @@
       },
       {
         "command": "codeReview.filterByFilenameEnable",
-        "title": "Code Review: View comments from the current file",
+        "title": "Code Review: 查看当前文件中的评审意见",
         "icon": {
           "light": "images/icons/filter-filename-off-light.svg",
           "dark": "images/icons/filter-filename-off-dark.svg"
@@ -114,7 +114,7 @@
       },
       {
         "command": "codeReview.filterByFilenameDisable",
-        "title": "Code Review: View comments from all files",
+        "title": "Code Review: 查看所有文件中的评审意见",
         "icon": {
           "light": "images/icons/filter-filename-on-light.svg",
           "dark": "images/icons/filter-filename-on-dark.svg"
@@ -354,7 +354,7 @@
         },
         "code-review.codeSelectionBackgroundColor": {
           "type": "string",
-          "title": "Code selection background color.",
+          "title": "代码选中时的默认颜色.",
           "markdownDescription": "Background color used to highlight the code associated to a comment.\nMust be specified using a hexadecimal representation - with or without the alpha part (`#C8C832` or `#C8C83226`) - or a `rgba()` definition.",
           "default": "codereview.code.selection.background"
         }
@@ -380,7 +380,7 @@
       "code-review": [
         {
           "id": "code-review.list",
-          "name": "Comment Explorer",
+          "name": "代码评审Explorer",
           "when": "codeReview:displayCodeReviewExplorer"
         }
       ]
