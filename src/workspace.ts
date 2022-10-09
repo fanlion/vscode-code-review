@@ -247,9 +247,7 @@ export class WorkspaceContext {
      */
     this.addNoteRegistration = commands.registerCommand('codeReview.addNote', () => {
       if (!window.activeTextEditor?.selection) {
-        window.showErrorMessage(
-          `No selection made. Please select something you want to add a comment to and try again.`,
-        );
+        window.showErrorMessage(`没有代码选中. 请选中你想评审的代码后再试.`);
         return;
       }
       // Execute every time a comment will be added to check file format
@@ -418,7 +416,7 @@ export class WorkspaceContext {
           canSelectFolders: false,
           canSelectFiles: true,
           canSelectMany: false,
-          openLabel: 'Select comments file to import',
+          openLabel: '选择要导入的JSON文件',
           filters: {
             // eslint-disable-next-line @typescript-eslint/naming-convention
             Template: ['json'],

@@ -176,7 +176,7 @@ export class WebViewComponent {
   }
 
   getWebviewContent(fileName: string): string {
-    let selectListString = this.categories.reduce((current, category) => {
+    const selectListString = this.categories.reduce((current, category) => {
       return current + `<option value="${category}">${category}</option>`;
     }, '');
     const uri = Uri.joinPath(this.context.extensionUri, 'dist', 'webview.html');

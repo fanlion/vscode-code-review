@@ -42,7 +42,7 @@
     "commands": [
       {
         "command": "codeReview.addNote",
-        "title": "Code Review: Add Note",
+        "title": "Code Review: 添加评审意见",
         "icon": {
           "light": "images/icons/add-light.svg",
           "dark": "images/icons/add-dark.svg"
@@ -78,7 +78,7 @@
       },
       {
         "command": "codeReview.exportAsJson",
-        "title": "Code Review: Export as JSON file"
+        "title": "Code Review: 导出JSON文件"
       },
       {
         "command": "codeReview.importFromJson",
@@ -371,7 +371,7 @@
       "activitybar": [
         {
           "id": "code-review",
-          "title": "Code Review",
+          "title": "三一代码评审",
           "icon": "images/icon-sidebar.svg"
         }
       ]
