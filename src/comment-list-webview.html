@@ -8,6 +8,52 @@
   </head>
 
   <body>
-    <h1>helloworld</h1>
+    <section>
+      <label for="project">项目</label>
+      <select id="project" name="project">
+        <option value=""></option>
+        PROJECT_LIST_STRING
+      </select>
+
+      <label for="application">应用</label>
+      <select id="application" name="project">
+        <option value=""></option>
+        APPLICATION_LIST_STRING
+      </select>
+
+      <button>刷新</button>
+
+      <label for="status">状态</label>
+      <select id="status" name="status">
+        <option value=""></option>
+        APPLICATION_LIST_STRING
+      </select>
+
+      <button id=" fetchList ">请求</button>
+    </section>
   </body>
+  <script>
+    const vscode = acquireVsCodeApi();
+
+    const handleMessage = (event) => {
+      const { command, message } = event.data;
+
+      switch (command) {
+        case 'PLUGIN_SEND_PROJECT_LIST': {
+          console.log('===========>收到项目信息', message);
+          break;
+        }
+      }
+    };
+
+    function fetchList() {
+      vscode.postMessage({
+        command: 'list',
+      });
+    }
+
+    // 接收插件进程发送过来的消息
+    window.addEventListener('message', handleMessage);
+    document.getElementById('fetchList').addEventListener('click', fetchList);
+  </script>
 </html>

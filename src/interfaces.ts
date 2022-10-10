@@ -48,3 +48,16 @@ export interface ExportMap {
 }
 
 export type ExportFormat = 'html' | 'markdown' | 'gitlab' | 'github' | 'jira' | 'json';
+
+// 应用列表
+export interface ApplicationItem {
+  applicationKey: string;
+  applicationName: string;
+}
+
+// 工程列表
+export interface ProjectItem {
+  projectKey: string; // 工程key
+  projectName: string; // 工程名称
+  applicationEntities: ApplicationItem[]; // 工程下的应用列表
+}
