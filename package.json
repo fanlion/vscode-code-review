@@ -49,6 +49,10 @@
         }
       },
       {
+        "command": "codeReview.openCommentList",
+        "title": "Code Review: 打开评审意见列表"
+      },
+      {
         "command": "codeReview.exportAsHtmlWithDefaultTemplate",
         "title": "Code Review: 使用默认模板导出HTML文件"
       },
@@ -130,6 +134,10 @@
         {
           "command": "codeReview.addNote",
           "group": "cmdGroup@1"
+        },
+        {
+          "command": "codeReview.openCommentList",
+          "group": "cmdGroup@1"
         }
       ],
       "view/title": [
@@ -201,6 +209,11 @@
         {
           "command": "codeReview.filterByFilenameDisable",
           "when": "view == code-review.list && isFilteredByFilename",
+          "group": "navigation@2"
+        },
+        {
+          "command": "codeReview.openCommentList",
+          "when": "view === codeReview.openCommentList",
           "group": "navigation@2"
         }
       ],
@@ -371,7 +384,7 @@
       "activitybar": [
         {
           "id": "code-review",
-          "title": "三一代码评审",
+          "title": "代码评审",
           "icon": "images/icon-sidebar.svg"
         }
       ]

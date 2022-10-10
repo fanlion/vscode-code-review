@@ -19,6 +19,7 @@ import { CheckFlag, FileGenerator } from './file-generator';
 import { ReviewCommentService } from './review-comment';
 import { rangesFromStringDefinition } from './utils/workspace-util';
 import { WebViewComponent } from './webview';
+import { CommentListWebview } from './comnet-list-webview';
 import { ExportFactory } from './export-factory';
 import { CommentsProvider, CommentView } from './comment-view';
 import { ReviewFileExportSection } from './interfaces';
@@ -27,6 +28,7 @@ import { CommentListEntry } from './comment-list-entry';
 import { ImportFactory, ConflictMode } from './import-factory';
 import { Decorations } from './utils/decoration-utils';
 import { CommentLensProvider } from './comment-lens-provider';
+import { CommentListService } from './coment-list-service';
 
 const checkForCodeReviewFile = (fileName: string) => {
   commands.executeCommand('setContext', 'codeReview:displayCodeReviewExplorer', fs.existsSync(fileName));
@@ -39,12 +41,16 @@ export class WorkspaceContext {
   private exportFactory!: ExportFactory;
   private importFactory!: ImportFactory;
   private commentService!: ReviewCommentService;
-  private webview: WebViewComponent;
+  private listService!: CommentListService;
+  private webview: WebViewComponent; // 评审意见编辑/新增webview
+  private listWebview: CommentListWebview; // 评审意见列表webview
   private commentsProvider!: CommentsProvider;
   private fileWatcher!: FileSystemWatcher;
 
   private openSelectionRegistration!: Disposable;
   private addNoteRegistration!: Disposable;
+  private openCommentListRegistration!: Disposable; // 获取评审列表的Registration
+
   private filterByCommitEnableRegistration!: Disposable;
   private filterByCommitDisableRegistration!: Disposable;
   private filterByFilenameEnableRegistration!: Disposable;
@@ -66,6 +72,7 @@ export class WorkspaceContext {
   constructor(private context: ExtensionContext, public workspaceRoot: string) {
     // create a new file if not already exist
     this.webview = new WebViewComponent(context);
+    this.listWebview = new CommentListWebview(context); // 评审意见列表webview
     this.decorations = new Decorations(context);
     this.setup();
   }
@@ -75,6 +82,7 @@ export class WorkspaceContext {
     this.updateExportFactory();
     this.updateImportFactory();
     this.updateReviewCommentService();
+    this.updateCommentListService();
     this.updateCommentsProvider();
     this.setupFileWatcher();
     this.watchConfiguration();
@@ -190,6 +198,10 @@ export class WorkspaceContext {
     this.commentService = new ReviewCommentService(this.generator.absoluteReviewFilePath, this.workspaceRoot);
   }
 
+  updateCommentListService() {
+    this.listService = new CommentListService(this.workspaceRoot);
+  }
+
   updateCommentsProvider() {
     /**
      * register comment view
@@ -258,6 +270,12 @@ export class WorkspaceContext {
       this.webview.addComment(this.commentService);
       this.commentsProvider.refresh();
       this.updateDecorations();
+    });
+
+    // 打开评审意见列表
+    this.openCommentListRegistration = commands.registerCommand('codeReview.openCommentList', () => {
+      // TODO: 这里需要判断用户有没有设置url,和用户名
+      this.listWebview.fetchProject(this.listService);
     });
 
     this.filterByCommitEnableRegistration = commands.registerCommand('codeReview.filterByCommitEnable', () => {
@@ -507,6 +525,7 @@ export class WorkspaceContext {
       this.openSelectionRegistration,
       this.addNoteRegistration,
       this.deleteNoteRegistration,
+      this.openCommentListRegistration,
       this.filterByCommitEnableRegistration,
       this.filterByCommitDisableRegistration,
       this.filterByFilenameEnableRegistration,
@@ -532,6 +551,7 @@ export class WorkspaceContext {
     this.openSelectionRegistration.dispose();
     this.addNoteRegistration.dispose();
     this.deleteNoteRegistration.dispose();
+    this.openCommentListRegistration.dispose();
     this.filterByCommitEnableRegistration.dispose();
     this.filterByCommitDisableRegistration.dispose();
     this.filterByFilenameEnableRegistration.dispose();
